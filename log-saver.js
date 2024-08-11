@@ -1,5 +1,5 @@
 import DiscordBasePlugin from './discord-base-plugin.js';
-import { MessageAttachment, WebhookClient } from "discord.js";
+import { AttachmentBuilder, WebhookClient } from "discord.js";
 import path from 'path';
 import { createGzip } from 'zlib';
 import { pipeline } from 'stream';
@@ -91,7 +91,7 @@ export default class LogSaver extends DiscordBasePlugin {
         });
         await this.sendDiscordMessage({
             files: [
-                new MessageAttachment(buffer, fileName)
+                new AttachmentBuilder(buffer, { name: fileName })
             ]
         });
     }
